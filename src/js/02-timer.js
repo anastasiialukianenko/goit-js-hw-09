@@ -1,4 +1,14 @@
 import flatpickr from "flatpickr";
+// all modules
+import Notiflix from 'notiflix';
+
+// one by one
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { Report } from 'notiflix/build/notiflix-report-aio';
+import { Confirm } from 'notiflix/build/notiflix-confirm-aio';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import { Block } from 'notiflix/build/notiflix-block-aio';
+
 // Додатковий імпорт стилів
 import "flatpickr/dist/flatpickr.min.css";
 
@@ -51,18 +61,13 @@ function addLeadingZero(value) {
   return value.toString().padStart(2, '0');
 };
 
-
-
-
-
-
 function initTimerInterval(date) {
     const selectedDate = date;
     const currentDate = new Date();
 
     // перевіряємо дату на майбутнє
-    if (selectedDate < currentDate) {
-        window.alert('Please choose a date in the future');
+  if (selectedDate < currentDate) {
+      Notiflix.Notify.failure('Please choose a date in the future');
         return;
     };
 
@@ -72,7 +77,7 @@ function initTimerInterval(date) {
         startBtn.disabled = true;
 
         timerId = setInterval(() => {
-        const timeDifference = selectedDate.getTime() - Date.now();
+      let timeDifference = selectedDate.getTime() - Date.now();
         const remainingTime = convertMs(timeDifference);
 
            if (remainingTime <= 0) {
