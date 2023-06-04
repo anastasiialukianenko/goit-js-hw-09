@@ -80,12 +80,11 @@ function initTimerInterval(date) {
       let timeDifference = selectedDate.getTime() - Date.now();
         const remainingTime = convertMs(timeDifference);
 
-           if (remainingTime <= 0) {
+           if (timeDifference <= 0) {
         clearInterval(timerId);
         resetTimerDisplay();
       } else {
              updateTimerDisplay(remainingTime);
-             timeDifference -= 1000;
       }
     }, 1000);
     });
